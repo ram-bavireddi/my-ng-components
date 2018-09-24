@@ -1,0 +1,15 @@
+<div class="dropdown" [style.width]="width">
+  <div class="selected-option" [ngClass]="{'disabled': disabled}" [style.height]="height" (click)="toggleOptions()">
+    {{selectedOption}}
+    <i class="down" *ngIf="!optionsOpen"></i>
+    <i class="up" *ngIf="optionsOpen"></i>
+  </div>
+  <div class="options-search" *ngIf="optionsOpen">
+    <input id="options-filter" class="options-filter" type="text" placeholder="Search here" [ngModel]="optionsFilter" (ngModelChange)="onOptionsFilter($event)">
+  </div>
+  <div class="options-container" *ngIf="optionsOpen">
+    <div class="options" *ngFor="let option of options; let idx=index" [ngClass]="higlightedOptionClass(option)" (click)="onOption(idx)">
+      {{option.label}}
+    </div>
+  </div>
+</div>
